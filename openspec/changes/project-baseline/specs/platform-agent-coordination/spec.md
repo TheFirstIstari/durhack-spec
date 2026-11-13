@@ -8,7 +8,7 @@ The agent-coordination baseline makes every agent session recoverable by any tea
 
 ### Requirement: Entire CLI enabled with agent hooks
 
-Every contributor SHALL run `entire enable` in the repo checkout and install hooks for each agent they use (`entire agent add opencode`, plus other agents as needed). Agent-assisted commits SHALL link to their session checkpoint (answer `always` at the link prompt).
+Every contributor SHALL run `entire enable` in the repo checkout and install hooks for each agent they use (`entire agent add opencode`, plus other agents as needed). Agent-assisted commits SHALL link to their session checkpoint (answer `always` at the link prompt). (Observed install path: `.opencode/plugin/entire.ts` singular — verify against your checkout.)
 
 #### Scenario: Teammate traces agent-produced code
 
