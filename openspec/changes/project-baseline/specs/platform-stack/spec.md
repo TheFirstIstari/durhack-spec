@@ -20,6 +20,11 @@ All project tooling (Elixir, OTP, Node, and any other runtimes or CLIs) SHALL be
 - **WHEN** CI runs any build, test, or release step
 - **THEN** it activates the same `mise.toml` pins as local development, so versions never drift between machines
 
+#### Scenario: Runner resolves tools via mise shims
+
+- **WHEN** a job runs on a `durhack-ci` or `durhack-deploy` runner
+- **THEN** `mise` (system install) with its shims on `PATH` resolves `elixir`/`mix`/`node` from the repo's `mise.toml`; workflows call `mise install` (or `jdx/mise-action`), never `apt`/`pacman` for toolchain languages
+
 ### Requirement: Elixir server stack
 
 The project SHALL use Elixir with the Phoenix framework for all server-side code.

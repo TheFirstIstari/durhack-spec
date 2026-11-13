@@ -8,12 +8,21 @@ The delivery path defines where the project builds, where it runs, and how the p
 
 ### Requirement: Self-hosted CI runners only
 
-All continuous-integration runs SHALL execute on self-hosted CachyOS x86_64 runners. No cloud-hosted or shared runners SHALL be used.
+All continuous-integration runs for the application repo (`TheFirstIstari/durhack`) SHALL execute on its dedicated `durhack-ci` runners on cachyos-x8664. No cloud-hosted, shared, or other-repo runners SHALL be used.
 
 #### Scenario: Push triggers CI
 
-- **WHEN** a contributor pushes a commit
-- **THEN** build, test, and release artifact steps run on a self-hosted CachyOS x86_64 runner and report pass/fail on the commit
+- **WHEN** a contributor pushes a commit to the application repo
+- **THEN** build, test, and release artifact steps run on a `durhack-ci` runner and report pass/fail on the commit
+
+### Requirement: Dedicated deploy runner
+
+Deploys SHALL run only on the `durhack-deploy` runner. CI jobs MUST NOT be able to land on it (workflows target exact labels; the deploy label is never on a CI runner and vice versa).
+
+#### Scenario: CI and deploy queued together
+
+- **WHEN** a CI run and a deploy dispatch overlap
+- **THEN** they execute on their respective runners without queueing behind each other
 
 ### Requirement: CI dependency caching
 

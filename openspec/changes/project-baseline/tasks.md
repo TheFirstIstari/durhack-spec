@@ -8,11 +8,12 @@
 - [ ] 1.4 Verify a checkpoint round-trips: agent change → commit (answer `always` at link prompt) → `entire checkpoint list` → second machine fetches and `entire checkpoint explain`s it
 - [ ] 1.5 Verify `entire search --compact` and `entire session resume` from a clean checkout; NEVER run `entire review` (paid agents) in team workflows
 
-## 2. Scaffold application (app repo)
+## 2. Scaffold application (app repo — `TheFirstIstari/durhack`, stays EMPTY until event start)
 
-- [ ] 2.1 Run `mix phx.new` with Ecto/Postgres; record all toolchain pins (Elixir/OTP/Node) in `mise.toml` — no ad-hoc installs
-- [ ] 2.2 Add JSX loader to esbuild config; install `dragology`, `react`, `react-dom` (React ^19) via npm in `assets/`; verify `mix assets.build` passes via mise toolchain
-- [ ] 2.3 Record exact pinned versions of all toolchain deps
+- [ ] 2.1 On cachyos-x8664: `GH_RUNNER_TOKEN_CI=… GH_RUNNER_TOKEN_DEPLOY=… sudo -E ~/setup-durhack-runners.sh` (tokens from repo Settings → Actions → Runners); registers 4× `durhack-ci` + 1× `durhack-deploy`, installs `durhack-runner-ci@` / `durhack-runner-deploy@` system units; verify `systemctl list-units 'durhack-runner-*'` all active and GitHub shows 5 idle runners
+- [ ] 2.2 Run `mix phx.new` with Ecto/Postgres (at event start); record all toolchain pins (Elixir/OTP/Node) in `mise.toml` — no ad-hoc installs
+- [ ] 2.3 Add JSX loader to esbuild config; install `dragology`, `react`, `react-dom` (React ^19) via npm in `assets/`; verify `mix assets.build` passes via mise toolchain
+- [ ] 2.4 Record exact pinned versions of all toolchain deps
 
 ## 3. Prove drag island (app repo)
 
