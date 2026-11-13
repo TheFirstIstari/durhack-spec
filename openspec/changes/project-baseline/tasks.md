@@ -24,5 +24,12 @@
 - [ ] 4.3 Verify a second identical node can start behind the tunnel with no node-local state required
 
 ## 5. Follow-ups (out of this change)
-- [ ] 5.1 Define project identity in a new change (concept, users, interactions)
 - [ ] 5.2 Record exact pinned versions of all toolchain deps once scaffolded
+
+## 6. Entire agent coordination ( researched from https://docs.entire.com — all free tier )
+
+- [ ] 6.1 Each contributor: `entire login` (device flow on headless: `entire login --device`), then `entire enable -y --agent opencode` in the repo root; answer `always` at the checkpoint-link prompt
+- [ ] 6.2 Each contributor: `entire agent add <each-agent-they-use>` (hook map: OpenCode → `.opencode/plugins/entire.ts`, Pi → `.pi/extensions/entire/index.ts`); verify with `entire agent list` + `entire status --detailed`
+- [ ] 6.3 Create the mirror: `entire repo mirror add "/gh/TheFirstIstari/durhack" --cluster <nearest-region>`, then `entire repo remote add entire`; verify `git fetch entire && git push entire` round-trips to GitHub
+- [ ] 6.4 Verify a checkpoint round-trips: agent change → commit → `entire checkpoint list` shows it → second machine fetches and `entire checkpoint explain`s it
+- [ ] 6.5 Verify `entire search --compact` and `entire session resume` work from a clean checkout; do NOT run `entire review` (paid agents) in any team workflow
