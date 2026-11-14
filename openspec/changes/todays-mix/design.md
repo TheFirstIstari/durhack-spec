@@ -91,7 +91,7 @@ A consistency check on the live sample: summing the FUELINST categories gave abo
 
 ### Persistence, visitors and sharing
 
-- **Anonymous visitor identity, created at first save.** A signed, `HttpOnly`, `Secure`, `SameSite=Lax` first-party cookie holding an opaque id of at least 128 bits, with `max_age` matching the idle retention and refreshed on activity. No cookie is set on a plain page view. The first save shows a notice of what is stored and for how long. Whether a cookie notice is legally required for this functional cookie is for the team to confirm.
+- **Anonymous visitor identity, created at first save.** A signed, `HttpOnly`, `Secure`, `SameSite=Lax` first-party cookie holding an opaque id of at least 128 bits, with `max_age` matching the idle retention and refreshed on activity. No cookie is set on a plain page view.
 - **Workspace and nodes.** Tables for workspaces, trees, content-addressed nodes (id is the hash of parent id, canonical edit encoding and model version), and separate mutable metadata (labels, notes, pins, archive flags, last position), so renaming never changes identity. Inserts are conflict-ignoring, so identical edits dedupe and concurrent tabs produce siblings without locks. Each tree stores its compressed base snapshot (estimated 10–20 KB).
 - **Evaluate on the client, verify on the server.** During a drag the client evaluates locally, with no requests. On drop it sends only the edit; the server validates, re-evaluates, stores a compact result summary (about 1.5 KB) and logs disagreements. Per-node cost is about 150 bytes for the edit plus the summary, so a 500-node tree stays well under 1 MB.
 - **Sharing publishes an immutable snapshot.** A share copies the chosen nodes (path to a node, or the whole tree) with their edit history into its own record with its own unguessable id, so it outlives the workspace. Notes are excluded unless the visitor opts in. Viewing is read-only; the viewer's first edit copies the ancestry into their own workspace (creating their identity then). Revocation and clear-my-data delete immediately.
@@ -126,7 +126,7 @@ A consistency check on the live sample: summing the FUELINST categories gave abo
 - [Channel pushes are at-most-once] → Catch-up on join, idempotent acknowledged commits and a client outbox.
 - [Server and client evaluators or assemblers diverge] → Shared golden fixtures, tolerance-bound agreement, server authority and mismatch logging.
 - [Anonymous workspaces and links can grow or be abused] → Quotas, rate limits, short retention, 128-bit ids, no personal data, clear-my-data and revoke.
-- [Cookie and privacy expectations] → Cookie only at first save, a notice, data minimisation, and a team check on notice wording.
+- [Cookie and privacy expectations] → Cookie only at first save, opaque and signed, no personal data or tracking, and data minimisation. Decided (durhack#9): no privacy notice, cookie banner or lost-cookie warning.
 - [Entire checkpoints can leak prompt content] → Decide visibility first, enable PII redaction, never paste secrets, and treat redaction as best-effort.
 - [Thirteen capabilities is a great deal for a hackathon] → Phased tasks with cut lines; the minimum viable slice is the observer map, ledger-tier edits with undo and compare, and return to live.
 - [Users confuse scenario with live] → The mode indicator, the scenario frame skin, first-run explanation, and observed frames carrying no scenario values.

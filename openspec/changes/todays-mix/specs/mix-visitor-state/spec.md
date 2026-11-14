@@ -18,7 +18,7 @@ A visitor SHALL be identified by an opaque, unguessable identifier (at least 128
 #### Scenario: First save
 
 - **WHEN** the visitor commits their first edit
-- **THEN** the identifier is created, and a short notice states what is stored and for how long
+- **THEN** the identifier is created
 
 ### Requirement: A private workspace per visitor
 
@@ -115,12 +115,3 @@ Stored workspace data SHALL consist of scenario content, identifiers and timesta
 
 - **WHEN** a stored workspace record is inspected
 - **THEN** it holds no IP address, device fingerprint or personal field
-
-### Requirement: Losing the cookie is explained
-
-Because there are no accounts, a visitor who loses their identifier cannot recover their private workspace. The product SHALL say so at first save and point to sharing as the way to keep or move work.
-
-#### Scenario: New device
-
-- **WHEN** a visitor wants their work on another device
-- **THEN** they publish a link, open it there, and fork it into that device's workspace

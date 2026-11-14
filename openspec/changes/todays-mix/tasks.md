@@ -12,7 +12,7 @@ Working method for every group: land the work as small commits linked to Entire 
 - [ ] 1.4 Spike belt animation: 60 dash-animated SVG paths over the real region outline; verify by a measured frame-time table on the slowest team laptop, which sets the animated-element cap and the Canvas 2D fallback decision
 - [ ] 1.5 Network data spike: load the ETYS boundary geometry and the 32 constraint groups from the NESO flows-and-limits dataset, settle what `Flow_MW` means relative to `Limit_MW` (explain the SCOTEX 6,460 versus 2,800 sample), map groups to cuts, sketch the zone graph, and test the calibration fit on a week of data; verify by a written decision in design.md (ship the flow tier, or boundary tier only) with the fit residuals
 - [ ] 1.6 Realtime spike: run a Phoenix Channel through the Cloudflare Tunnel with WebSocket and with long-polling, measuring idle disconnects and reconnect behaviour; verify by a recorded result and the chosen fallback settings in `docs/realtime.md`
-- [ ] 1.7 Confirm the cookie notice wording and the checkpoint visibility decision with the team; verify by the agreed notice text recorded in `docs/privacy.md`
+- [x] 1.7 Confirm the cookie notice wording and the checkpoint visibility decision with the team; done by decision (durhack#9): no privacy notice or cookie warning is shown, and checkpoint visibility is settled in `docs/agent-coordination.md` in durhack
 
 ## 2. Time handling foundation
 
@@ -118,7 +118,7 @@ Working method for every group: land the work as small commits linked to Entire 
 
 ## 12. Visitor workspaces and version tree (`mix-visitor-state`, `mix-history-graph` server)
 
-- [ ] 12.1 Issue the signed visitor cookie only on first save, with the notice from 1.7; verify browsing and scrubbing set no cookie and the first commit sets one with the documented attributes
+- [ ] 12.1 Issue the signed visitor cookie only on first save; verify browsing and scrubbing set no cookie and the first commit sets one with the documented attributes
 - [ ] 12.2 Add migrations for workspaces, trees, content-addressed nodes, node metadata and shared snapshots; verify migrate-up runs once and conflict-ignoring inserts keep one row per node id under a concurrency test
 - [ ] 12.3 Implement canonical edit encoding and node hashing; verify the same edit on the same parent yields one id and a label change leaves ids unchanged
 - [ ] 12.4 Implement the tree API (create from a base, append with validation, evaluation and stored summary with mismatch logging, fetch, metadata, archive and restore) with per-visitor authorisation; verify two concurrent appends produce two siblings and a request for another visitor's tree is indistinguishable from not found
