@@ -1,4 +1,4 @@
-# Tasks — Today's Mix (this repo is specs-only; every task below executes in the application repo `TheFirstIstari/durhack`)
+# Tasks — Lynx (this repo is specs-only; every task below executes in the application repo `TheFirstIstari/durhack`)
 
 Phases are ordered so each ends demoable. Groups 1 to 8 are the observer product (live, regional, scrubbable, realtime). Groups 9 to 15 are the what-if stack and have their own minimum viable slice: ledger-tier edits, undo and redo, return to live, two-way compare, and a saved visitor workspace. Cut lines, in order of expendability: group 19 (stretch); the flow tier and redispatch inside group 11; sharing, archive, notes and three- to four-way compare inside groups 12, 14 and 15; group 16 (depth); the canary in group 18.
 
