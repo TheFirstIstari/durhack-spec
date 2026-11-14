@@ -1,12 +1,17 @@
 # Tasks — development plan (this repo is specs-only; app phases execute in the application repo)
 
-## 1. Agent coordination (this repo — DONE)
+## 1. Agent coordination (both repos; free tier only)
 
-- [x] 1.1 `entire enable -y --agent opencode` in repo root — hooks installed (`.opencode/plugin/entire.ts`, `.entire/settings.json` committed)
-- [x] 1.2 Mirror created: `entire repo mirror add "/gh/TheFirstIstari/durhack"` (aws-us-east-2); remote `entire` added, fetch verified
-- [ ] 1.3 Each additional contributor: `entire login`, `entire agent add <their-agents>`; verify with `entire agent list` + `entire status --detailed`
-- [ ] 1.4 Verify a checkpoint round-trips: agent change → commit (answer `always` at link prompt) → `entire checkpoint list` → second machine fetches and `entire checkpoint explain`s it
-- [ ] 1.5 Verify `entire search --compact` and `entire session resume` from a clean checkout; NEVER run `entire review` (paid agents) in team workflows
+- [x] 1.1 `entire enable -y --agent opencode` in `durhack-spec` repo root — hooks installed (`.opencode/plugin/entire.ts`, `.entire/settings.json` committed)
+- [ ] 1.2 Re-verify the mirror: it was recorded as created (`entire repo mirror add "/gh/TheFirstIstari/durhack"`, aws-us-east-2) but no `entire` remote exists in the current checkouts; confirm on the machine that created it, add the `entire` remote where missing (`entire repo remote add`), and verify a fetch through it
+- [ ] 1.3 Remove the stray agent hook directories committed under `openspec/changes/project-baseline/` (`.entire/`, `.claude/`, `.pi/`), then install hooks at the `durhack-spec` repo root for every agent in use, including Claude Code (`entire agent add claude-code`); verify with `git ls-files | grep 'project-baseline/\.'` returning nothing and `entire status --detailed` listing each agent
+- [ ] 1.4 Commit the team settings in `.entire/settings.json` (`commit_linking: always`, PII redaction on, summaries off, checkpoint-push decision) and document personal-only keys; verify `entire status --detailed` shows the effective values
+- [ ] 1.5 Record the checkpoint-visibility decision: check repo visibility (`gh repo view --json visibility`) and choose private repo, separate private checkpoint remote, or no session push; verify the choice is written in `docs/agent-coordination.md` before any checkpoint push
+- [ ] 1.6 Each additional contributor: `entire login`, `entire agent add <their-agents>` (GUI Git clients: absolute hook path); verify with `entire status --detailed` and a test commit carrying an `Entire-Checkpoint` trailer
+- [ ] 1.7 Verify a checkpoint round-trips: agent change → commit (trailer present) → `entire checkpoint list` → second machine fetches and runs `entire checkpoint explain` and `entire why <file>`
+- [ ] 1.8 Verify `entire search "<query>"` and `entire session resume <branch>` from a clean checkout; the team never uses `--force` blindly and NEVER runs `entire review`, trail review agents, `entire checkpoint explain --generate`, summaries or memory extraction (paid or metered agents); verify by grepping CI and hooks for those commands
+- [ ] 1.9 Optional: enable local continuous memory after the first commit (Git 2.36 or later, extraction declined, no hosted sync); verify the generated `.entire/agent-guide.md` is reviewed and committed
+- [ ] 1.10 App repo `durhack` (currently no commits, no `.entire/`, no hooks): at its first commit run `entire enable --agent <agents>`, commit the team settings, create or confirm the mirror, and verify the first commit carries an `Entire-Checkpoint` trailer
 
 ## 2. Scaffold application (app repo — `TheFirstIstari/durhack`, stays EMPTY until event start)
 
